@@ -33,10 +33,4 @@ included. Install them from their original sources.
 | `natural-japanese` | coji | [coji/natural-japanese](https://github.com/coji/natural-japanese) | MIT |
 | `visual-explainer` | Nico Bailon | [nicobailon/visual-explainer](https://github.com/nicobailon/visual-explainer) | MIT |
 | `explain`, `sanitize-artifacts` | kotek-7 | [kotek-7/dotfiles](https://github.com/kotek-7/dotfiles) | No license (all rights reserved) — listed for reference only, not redistributed |
-
-`.skill-lock.json` records the exact set and versions. Restore the whole
-environment with:
-
-```
-npx skills experimental_install
-```
+| `eli-new`, `implementation-brief` | Orito Inc. | [orito-inc/codex-plugins](https://github.com/orito-inc/codex-plugins) | MIT |
