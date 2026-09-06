@@ -1,0 +1,127 @@
+{
+  "version": 3,
+  "skills": {
+    "handoff": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/productivity/handoff/SKILL.md",
+      "skillFolderHash": "2242e8f05424b8c2ae94194a90d97b88d16108ec",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-08-27T02:01:41.944Z",
+      "updatedAt": "2026-08-27T02:01:41.944Z"
+    },
+    "prototype": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/engineering/prototype/SKILL.md",
+      "skillFolderHash": "e41d92e171f074a2b6887d8f6faca4a15c83d1ca",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-08-27T02:01:41.945Z",
+      "updatedAt": "2026-08-27T02:01:41.945Z"
+    },
+    "resolving-merge-conflicts": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/engineering/resolving-merge-conflicts/SKILL.md",
+      "skillFolderHash": "77f0d7de3143abbf03e55a63522d30bff31ae908",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-08-27T02:01:41.945Z",
+      "updatedAt": "2026-08-27T02:01:41.945Z"
+    },
+    "claude-handoff": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/in-progress/claude-handoff/SKILL.md",
+      "skillFolderHash": "6845c30e62e1c0c2c0fbdea8307379197f0b4dc4",
+      "installedAt": "2026-08-27T02:01:41.945Z",
+      "updatedAt": "2026-08-27T02:01:41.945Z"
+    },
+    "grilling": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/productivity/grilling/SKILL.md",
+      "skillFolderHash": "f0732035b8b1b60ae39454e4191caef32fa91903",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-09-01T05:00:57.955Z",
+      "updatedAt": "2026-09-01T05:00:57.955Z"
+    },
+    "natural-japanese": {
+      "source": "coji/natural-japanese",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/coji/natural-japanese.git",
+      "skillPath": "skills/natural-japanese/SKILL.md",
+      "skillFolderHash": "580a1f058a4588b6cd1303e13a9699d0a717513e",
+      "installedAt": "2026-09-04T04:55:52.611Z",
+      "updatedAt": "2026-09-04T04:55:52.611Z"
+    },
+    "sanitize-artifacts": {
+      "source": "kotek-7/dotfiles",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/kotek-7/dotfiles.git",
+      "skillPath": "dot_agents/skills/sanitize-artifacts/SKILL.md",
+      "skillFolderHash": "95eacf0e2fc25f8efae48b3ca010236f0d76c2a9",
+      "installedAt": "2026-09-04T11:47:50.847Z",
+      "updatedAt": "2026-09-04T11:47:50.847Z"
+    },
+    "explain": {
+      "source": "kotek-7/dotfiles",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/kotek-7/dotfiles.git",
+      "skillPath": "dot_agents/skills/explain/SKILL.md",
+      "skillFolderHash": "ec2cc2aaec5d383e4cb734a0af0dbe8a75924524",
+      "installedAt": "2026-09-04T11:47:50.849Z",
+      "updatedAt": "2026-09-04T11:47:50.849Z"
+    },
+    "cognitive-rhythm-writing": {
+      "source": "Kaniikura/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Kaniikura/agent-skills.git",
+      "skillPath": "skills/cognitive-rhythm-writing/SKILL.md",
+      "skillFolderHash": "8aafec2ebd1823e4f7317487e14f9b79012aba88",
+      "installedAt": "2026-09-06T05:12:34.295Z",
+      "updatedAt": "2026-09-06T05:12:34.295Z"
+    },
+    "japanese-tech-writing": {
+      "source": "Kaniikura/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Kaniikura/agent-skills.git",
+      "skillPath": "skills/japanese-tech-writing/SKILL.md",
+      "skillFolderHash": "edc6fc91d760bdca1248a5e880f4759f01616bb8",
+      "installedAt": "2026-09-06T05:12:34.297Z",
+      "updatedAt": "2026-09-06T05:12:34.297Z"
+    },
+    "visual-explainer": {
+      "source": "nicobailon/visual-explainer",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/nicobailon/visual-explainer.git",
+      "skillPath": "plugins/visual-explainer/SKILL.md",
+      "skillFolderHash": "898ebc2b3509af8664b48922e4abc40d71233c4c",
+      "installedAt": "2026-09-06T05:12:44.831Z",
+      "updatedAt": "2026-09-06T05:12:44.831Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "antigravity",
+    "antigravity-cli",
+    "cline",
+    "codex",
+    "cursor",
+    "deepagents",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed",
+    "claude-code"
+  ]
+}
