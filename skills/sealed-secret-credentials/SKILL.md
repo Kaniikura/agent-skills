@@ -50,8 +50,33 @@ identifier values out of all of these:
 An encrypted SealedSecret is a legitimate GitOps artifact. Anything holding a
 decryptable value is not.
 
-Never write a plaintext Secret to disk. If temporary input is unavoidable,
-create it with owner-only permissions and delete it reliably when the work ends.
+Never create or save a plaintext Secret manifest. If temporary plaintext input
+is unavoidable, create it with owner-only permissions, and let ownership decide
+the cleanup:
+
+- Files you created: delete them reliably on success, on failure, and on
+  interruption.
+- Files the user placed: leave them. Do not delete or move them without explicit
+  authorization, and do not assume they were meant to be consumed.
+
+## When the credential arrives as a file
+
+Treat the file content as bytes, not as a line of text. A trailing LF or CRLF
+may or may not be part of the value, and the bytes alone cannot tell you which.
+
+The shape can be established without printing anything secret. Byte length,
+whether a trailing newline is present, whether line endings are CRLF, and the
+number of lines are all safe classifications to check and to report.
+
+If the value format is not confirmed, do not strip the trailing newline on your
+own judgment. Confirm the contract and stop. Trimming a byte that belonged to
+the value, and sealing one that did not, fail the same way: the Secret decrypts
+and syncs, then authentication fails.
+
+Once the contract is confirmed, for example a single line with no trailing
+newline, derive the input once and use those same bytes for both the
+authentication pre-check and the seal. A pre-check that passes on one byte
+string while a different one gets sealed proves nothing.
 
 ## Sealing
 
@@ -64,6 +89,36 @@ failure much harder to diagnose.
 Match the scope (strict, namespace-wide, cluster-wide) and the encryption
 granularity of the existing SealedSecrets. Do not loosen scope to save
 verification effort.
+
+Establish which controller is the target, its namespace, its Service, and how
+its public key is retrieved, from the live environment or from the repository's
+conventions. Do not infer any of them from the tool's defaults.
+
+When cluster access runs through a jump host or another intermediate, keep the
+plaintext credential off it. Only what public key retrieval, or verification of
+the already-encrypted candidate, requires may travel there. If the sealing
+tool's default controller discovery fails, do not substitute an arbitrary
+certificate, a different cluster, or a different mechanism. Repair the access
+path, or stop.
+
+## Checking the candidate before it replaces anything
+
+A newly produced SealedSecret is a candidate, not yet a replacement. Before it
+overwrites an existing manifest, compare its non-secret metadata against the
+manifest it replaces:
+
+- `apiVersion` and `kind`.
+- `metadata` name and namespace.
+- Template metadata name and namespace.
+- `type`.
+- Scope-related annotations.
+- The set of encrypted key names.
+
+Every field above is non-secret, so this comparison never requires printing
+ciphertext or any decryptable value. Any difference you did not intend is a stop
+condition, not something to patch up in the committed file. A candidate sealed
+under a different name, namespace, or scope than the manifest it replaces will
+either fail to decrypt or decrypt into the wrong Secret.
 
 ## Optional pre-check against the authentication endpoint
 
@@ -82,19 +137,34 @@ stage below carry the load.
 
 ## Verification
 
+Check the sealing tool's version and its help output before relying on any
+particular flag. How input is read, and whether the tool can validate a
+candidate at all, differ across versions. Do not assume either from the command
+name.
+
+Where the tool and your access allow it, confirm that the target controller can
+decrypt the candidate before anything is applied. This is its own piece of
+evidence: it says the controller can decrypt this candidate, and nothing about
+whether the manifest was delivered, reconciled, or picked up by a consumer.
+
 `Synced=True` on a `SealedSecret` confirms that the controller decrypted it and
-produced a Secret. It is not evidence that the credential works. Verify in
-stages:
+produced a Secret. It is not evidence that the credential works. Keep the
+evidence separate, stage by stage:
 
-1. Delivery: the commit has reached the cluster.
-2. Decrypt and sync: the Secret exists with the expected keys. Check for key
-   presence only, never print values.
-3. Consumer behavior: whatever reads the Secret is working as expected.
+1. Authentication pre-check: the endpoint accepted the credential.
+2. Candidate encryption: a candidate exists, and its non-secret metadata matches
+   the manifest it replaces.
+3. Controller decrypt verification: the target controller can decrypt the
+   candidate.
+4. GitOps delivery: the commit reached the cluster, the SealedSecret reconciled,
+   and the Secret carries the expected keys. Check key presence only, never
+   print values.
+5. Consumer behavior: whatever reads the Secret is working as expected.
 
-Report the rollout as complete only after stage 3. What stage 3 looks like
-depends on the consumer: an authenticated endpoint responds, a monitoring
-scrape target goes up, a Pod runs without entering a restart loop. Pick
-something observable from outside.
+No stage stands in for a later one. Report the rollout as complete only after
+stage 5. What stage 5 looks like depends on the consumer: an authenticated
+endpoint responds, a monitoring scrape target goes up, a Pod runs without
+entering a restart loop. Pick something observable from outside.
 
 Existing Pods can still be holding the old Secret, so confirm the consumer
 actually reloaded the value.
@@ -134,8 +204,9 @@ deletion and credential reissue are not rollback mechanisms.
 Report only:
 
 - The files changed and the commit.
-- Which verification stages ran and what they showed (delivery, decrypt and
-  sync, consumer behavior).
+- Which of the five stages ran and what each showed: authentication pre-check,
+  candidate encryption, controller decrypt verification, GitOps delivery,
+  consumer behavior. Name the stages that were skipped as skipped.
 - What is unfinished, and why.
 - On failure, the cause only as far as a safe classification supports.
 
