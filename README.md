@@ -38,3 +38,9 @@ included. Install them from their original sources.
 | `visual-explainer` | Nico Bailon | [nicobailon/visual-explainer](https://github.com/nicobailon/visual-explainer) | MIT |
 | `explain`, `sanitize-artifacts` | kotek-7 | [kotek-7/dotfiles](https://github.com/kotek-7/dotfiles) | No license (all rights reserved) — listed for reference only, not redistributed |
 | `eli-new`, `implementation-brief` | Orito Inc. | [orito-inc/codex-plugins](https://github.com/orito-inc/codex-plugins) | MIT |
+| `show-me` | HumanLayer | [humanlayer/skills](https://github.com/humanlayer/skills) | MIT |
+| `unslop` | Lauren Tan | [cursor/plugins](https://github.com/cursor/plugins) (`pstack`) | MIT |
+| `suiko` | nwiizo | [nwiizo/suiko](https://github.com/nwiizo/suiko) | MIT |
+
+Skills installed from private or internal sources are intentionally left out of
+this table, for the same reason `.skill-lock.json` is not committed.
