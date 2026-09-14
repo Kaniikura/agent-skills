@@ -14,6 +14,10 @@ like — no attribution required. A link back is welcome but never expected.
 - **`cognitive-rhythm-writing`** — Designing rhythm and density in expository
   prose, treating pacing as a switch of cognitive mode rather than decoration.
   It reads `japanese-tech-writing` first, so keep both installed.
+- **`sealed-secret-credentials`** — Handling real credentials as SealedSecrets in
+  a Kubernetes GitOps repo: repo conventions before guesses, never sealing
+  placeholder values, verifying through the actual consumer, and reporting
+  results without leaking values.
 
 ### Install
 
